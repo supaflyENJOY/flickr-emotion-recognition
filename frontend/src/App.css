@@ -1,0 +1,25 @@
+.App {
+  text-align: center;
+}
+
+@font-face {
+  font-family: 'Muller';
+  font-style: regular;
+  font-weight: regular;
+  src: url('./fonts/Muller\ Regular.otf') format('opentype')
+}
+
+@font-face {
+  font-family: 'Muller';
+  font-style: bold;
+  font-weight: bold;
+  src: url('./fonts/Fontfabric\ -\ MullerBold.otf') format('opentype')
+}
+
+
+@font-face {
+  font-family: 'Muller';
+  font-style: medium;
+  font-weight: medium;
+  src: url('./fonts/Fontfabric\ -\ MullerMedium.otf') format('opentype')
+}
