@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Paper from '@material-ui/core/Paper'
 import styled from "styled-components";
 import Photo from "../images/image.png"
+import PopUp from "./PopUp"
 
 const PhotosWrapper = styled.div`
   margin-top: 100px;
@@ -20,8 +20,13 @@ const PhotosWrapper = styled.div`
     height:360px;
   }
 `
+const Layout = styled.div `
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.16);
+  background-color: #ffffff;
+`
 const ImageWrapper = styled.div`
   display: flex;
+  
   width 90%;
   margin-left:5%;
   flex-direction: column;
@@ -57,9 +62,23 @@ const Description = styled.div`
 `
 
 export default function ImagesContainer( {data} ){
-  const [photo, setPhoto] = useState(null); 
+  const [ id, setID ] = useState(null); 
+  function nextPhoto(){
+    if(id<data.length-1){
+      setID(id+1)
+    }
+  }
+  function previousPhoto(){
+    if(id>=1){
+      setID(id-1)
+    }
+  }
+  function clear(){
+    setID(null)
+  }
+
   const photos = data.map((photo)=>
-    <Paper onClick={()=> window.alert()}>
+    <Layout id={photo.id} onClick={() => setID(photo.id)}>
       <ImageWrapper>
         <img  src={require('../images/image.png')}/>
         <Description>
@@ -67,10 +86,12 @@ export default function ImagesContainer( {data} ){
           <p>{photo.text}</p>
         </Description>
       </ImageWrapper>      
-    </Paper>
+      </Layout>
   )
   return(
-    <PhotosWrapper> { photos } </PhotosWrapper>
-      
+    <>
+     { id !== null ? <PopUp photo={data[id]} back={previousPhoto} next={nextPhoto} exit={clear}/>: null}
+     <PhotosWrapper> { photos } </PhotosWrapper>
+    </>
   )
 }
