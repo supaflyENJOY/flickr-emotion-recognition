@@ -12,45 +12,32 @@ export default function Gallery(props) {
     happines: false,
     fear: false
   });
+
   const [photos, setPhotos] = useState([]);
 
   const [filteredPhotos, setFilteredPhotos] = useState([]);
 
-  async function fetchMyAPI() {
-    let url = 'http://something';
-    let config = {};
-    setTimeout(() => {
-      setPhotos(data);
-      refresh();
-    }, 2000);
-  }
-
-  useEffect(() => {
-    fetchMyAPI();
-  }, []);
-
-  function filter(arr) {
+  function applyFilters(arr){
+    setFilters(arr)
     let result = [];
-    let keys = Object.keys(filters);
+    let keys = Object.keys(arr);
     let filtered = keys.filter(function(key) {
-      return filters[key];
+      return arr[key];
     });
-    if (filtered.length > 1) {
-      for (let i = 0; i < arr.length; i++) {
+    if (filtered.length !== 0) {
+      for (let i = 0; i < photos.length; i++) {
         for (let k = 0; k < filtered.length; k++) {
-          if (arr[i][k] > 5) {
-            result.push(arr[i]);
+          if (filtered[k] in photos[i]){
+            result.push(photos[i]);
+            break;
           }
         }
       }
       setFilteredPhotos(result);
+      console.log('iteration')
     } else {
       setFilteredPhotos(photos);
     }
-  }
-
-  function refresh() {
-    filter(photos);
   }
 
   const data = [
@@ -64,9 +51,18 @@ export default function Gallery(props) {
     { id: 7, text: 'Photo', happines: 20 }
   ];
 
+  async function fetchMyAPI() {
+    await setPhotos(data);
+  }
+
+  useEffect(() => {
+    fetchMyAPI();
+    applyFilters(filters);
+  }, []);
+
   return (
     <div>
-      <Filters onFiltersChanged={setFilters} apllyFilters={refresh} />
+      <Filters onFiltersChanged={applyFilters} />
       <ImagesContainer data={filteredPhotos} />
     </div>
   );

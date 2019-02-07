@@ -46,7 +46,7 @@ const useStyles = makeStyles({
   checked: {}
 });
 
-function Checkboxes({ onFiltersChanged, apllyFilters }) {
+function Checkboxes({ onFiltersChanged }) {
   const classes = useStyles();
 
   const [state, setState] = useState({
@@ -63,7 +63,6 @@ function Checkboxes({ onFiltersChanged, apllyFilters }) {
     const newState = { ...state, [name]: event.target.checked };
     setState(newState);
     onFiltersChanged(newState);
-    apllyFilters();
   };
 
   return (

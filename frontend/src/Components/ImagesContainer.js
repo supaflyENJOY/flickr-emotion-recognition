@@ -77,8 +77,8 @@ export default function ImagesContainer({ data }) {
   }
 
   const photos = data.map(photo => (
-    <Layout id={photo.id} onClick={() => setID(photo.id)}>
-      <ImageWrapper>
+    <Layout key={photo.id} onClick={() => setID(photo.id)}>
+      <ImageWrapper >
         <img src={require('../images/image.png')} alt={'faces'} />
         <Description>
           <h4>{photo.text}</h4>
