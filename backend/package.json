@@ -12,13 +12,15 @@
   "dependencies": {
     "dotenv": "^6.2.0",
     "fastify": "^1.14.1",
-    "flickrapi": "^0.6.0",
+    "flickr-sdk": "^3.8.0",
     "mongodb": "^3.1.13",
-    "mongoose": "^5.4.10"
+    "mongoose": "^5.4.10",
+    "ramda": "^0.26.1"
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.0",
     "@types/mongoose": "^5.3.12",
+    "@types/ramda": "^0.25.48",
     "typescript": "^3.3.3"
   }
 }

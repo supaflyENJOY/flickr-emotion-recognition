@@ -1,10 +1,13 @@
 import * as dotenv from 'dotenv'
-import * as fastify from 'fastify'
+dotenv.config();
 
+import * as fastify from 'fastify'
 import databaseConnect from './utils/database';
 import Photo from './models/Photo';
+import getPhotos from './modules/getPhotos';
 
-dotenv.config();
+// Flickr photos request
+// getPhotos().then(console.log)
 
 databaseConnect();
 const app = fastify()
