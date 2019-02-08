@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const Layout = styled.div`
@@ -76,7 +76,7 @@ export default function PopUp({ photo, back, next, exit }) {
     <Layout>
       <img src={require('../images/back.png')} alt={'arrow'} onClick={back} className={'arrows'} />
       <ImageDetails>
-        <img src={require('../images/image.png')} alt={'main'} className={'mainPhoto'} />
+        <img src={require('../images/image.png')} alt="main" className="mainPhoto" />
         <DescriptionField>
           <Description>
             <h4>{photo.id}</h4>
