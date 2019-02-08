@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import InfiniteScroll from 'react-infinite-scroller';
 import PopUp from './PopUp';
 
 const PhotosWrapper = styled.div`
@@ -61,7 +60,7 @@ const Description = styled.div`
   }
 `;
 
-export default function ImagesContainer({ data, load, exist }) {
+export default function ImagesContainer({ data }) {
   const [id, setID] = useState(null);
   function nextPhoto() {
     if (id < data.length - 1) {
@@ -82,7 +81,7 @@ export default function ImagesContainer({ data, load, exist }) {
       <ImageWrapper>
         <img src={require('../images/image.png')} alt={'faces'} />
         <Description>
-          <h4>{photo.text}</h4>
+          <h4>{photo.id}</h4>
           <p>{photo.text}</p>
         </Description>
       </ImageWrapper>
@@ -94,17 +93,7 @@ export default function ImagesContainer({ data, load, exist }) {
       {id !== null ? (
         <PopUp photo={data[id]} back={previousPhoto} next={nextPhoto} exit={clear} />
       ) : null}
-
-      <InfiniteScroll
-        pageStart={0}
-        loadMore={load}
-        hasMore={exist}
-        loader={<div className="loader">Loading ...</div>}
-        useCapture
-      >
-        {' '}
-        <PhotosWrapper>{photos}</PhotosWrapper>
-      </InfiniteScroll>
+      <PhotosWrapper>{photos}</PhotosWrapper>
     </>
   );
 }

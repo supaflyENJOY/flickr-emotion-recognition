@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Filters from './Filters';
-import ImagesContainer from './ImagesContainer';
+import PhotoPresenter from './PhotoPresenter';
 
 const Loading = styled.div`
   width: 100%;
@@ -73,18 +73,18 @@ export default function Gallery(props) {
     setFilters(arr);
     let result = [];
     let keys = Object.keys(arr);
-    let filtered = keys.filter(function(key) {
+    let selectedFilters = keys.filter(function(key) {
       return arr[key];
     });
-    if (filtered.length !== 0) {
-      for (let i = 0; i < photos.length; i++) {
-        for (let k = 0; k < filtered.length; k++) {
-          if (filtered[k] in photos[i]) {
-            result.push(photos[i]);
-            break;
+
+    if (selectedFilters.length !== 0) {
+      result = photos.filter(obj => {
+        for (let filter in selectedFilters) {
+          if (selectedFilters[filter] in obj) {
+            return obj;
           }
         }
-      }
+      });
       setFilteredPhotos(result);
     } else {
       setFilteredPhotos(photos);
@@ -127,7 +127,7 @@ export default function Gallery(props) {
   ];
 
   async function loadItems(page = 0) {
-    setPhotos(data.slice(page * 5, (page + 1) * 5));
+    setPhotos(data);
   }
 
   useEffect(() => {
@@ -135,8 +135,11 @@ export default function Gallery(props) {
     if (photos.length > 0 && photos[photos.length - 1].id < 31) {
       setExistMoreItems(true);
     } else setExistMoreItems(false);
-    applyFilters(filters);
   }, []);
+
+  useEffect(() => {
+    applyFilters(filters);
+  }, [filters, photos]);
 
   return (
     <div>
@@ -146,7 +149,7 @@ export default function Gallery(props) {
           <Spinner />
         </Loading>
       ) : (
-        <ImagesContainer data={filteredPhotos} load={loadItems} exist={existMoreItems} />
+        <PhotoPresenter data={filteredPhotos} load={loadItems} exist={existMoreItems} />
       )}
     </div>
   );
