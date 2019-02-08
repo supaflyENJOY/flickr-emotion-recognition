@@ -19,7 +19,7 @@ const Label = styled.p`
 
 function Header(props) {
   return (
-    <AppBar position="static" style={{ background: '#242424' }}>
+    <AppBar position="static" style={{ background: "#242424" }}>
       <Toolbar>
         <Label>INT20h</Label>
       </Toolbar>

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import Checkbox from "@material-ui/core/Checkbox";
-import styled from "styled-components";
-import { makeStyles } from "@material-ui/styles";
+import React, { useState } from 'react';
+import Checkbox from '@material-ui/core/Checkbox';
+import styled from 'styled-components';
+import { makeStyles } from '@material-ui/styles';
 
 const FilterWrapper = styled.div`
   background-color: #dddddd;
@@ -11,14 +11,16 @@ const FilterWrapper = styled.div`
   justify-content: center;
   height: 85px;
   width: 100%;
-`
+  flex-wrap: wrap;
+  height: auto;
+`;
 
 const CheckboxWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 0 30px 0 30px;
+  margin: 0 15px 0 15px;
   p {
     width: 67px;
     height: 19px;
@@ -32,7 +34,7 @@ const CheckboxWrapper = styled.div`
     text-align: left;
     color: #777777;
   }
-`
+`;
 const useStyles = makeStyles({
   root: {
     width: '18px',
@@ -41,7 +43,7 @@ const useStyles = makeStyles({
       color: '#007464'
     }
   },
-  checked: {},
+  checked: {}
 });
 
 function Checkboxes({ onFiltersChanged }) {
@@ -68,11 +70,11 @@ function Checkboxes({ onFiltersChanged }) {
       <CheckboxWrapper>
         <Checkbox
           checked={state.sadness}
-          onChange={handleChange("sadness")}
+          onChange={handleChange('sadness')}
           value="sadness"
           classes={{
             root: classes.root,
-            checked: classes.checked,
+            checked: classes.checked
           }}
         />
         <p>Sadness</p>
@@ -80,11 +82,11 @@ function Checkboxes({ onFiltersChanged }) {
       <CheckboxWrapper>
         <Checkbox
           checked={state.neutral}
-          onChange={handleChange("neutral")}
+          onChange={handleChange('neutral')}
           value="neutral"
           classes={{
             root: classes.root,
-            checked: classes.checked,
+            checked: classes.checked
           }}
         />
         <p>Neutral</p>
@@ -92,11 +94,11 @@ function Checkboxes({ onFiltersChanged }) {
       <CheckboxWrapper>
         <Checkbox
           checked={state.disgust}
-          onChange={handleChange("disgust")}
+          onChange={handleChange('disgust')}
           value="disgust"
           classes={{
             root: classes.root,
-            checked: classes.checked,
+            checked: classes.checked
           }}
         />
         <p>Disgust</p>
@@ -104,11 +106,11 @@ function Checkboxes({ onFiltersChanged }) {
       <CheckboxWrapper>
         <Checkbox
           checked={state.anger}
-          onChange={handleChange("anger")}
+          onChange={handleChange('anger')}
           value="anger"
           classes={{
             root: classes.root,
-            checked: classes.checked,
+            checked: classes.checked
           }}
         />
         <p>Anger</p>
@@ -116,11 +118,11 @@ function Checkboxes({ onFiltersChanged }) {
       <CheckboxWrapper>
         <Checkbox
           checked={state.surprise}
-          onChange={handleChange("surprise")}
+          onChange={handleChange('surprise')}
           value="surprise"
           classes={{
             root: classes.root,
-            checked: classes.checked,
+            checked: classes.checked
           }}
         />
         <p>Surprise</p>
@@ -128,11 +130,11 @@ function Checkboxes({ onFiltersChanged }) {
       <CheckboxWrapper>
         <Checkbox
           checked={state.happines}
-          onChange={handleChange("happines")}
+          onChange={handleChange('happines')}
           value="happines"
           classes={{
             root: classes.root,
-            checked: classes.checked,
+            checked: classes.checked
           }}
         />
         <p>Happines</p>
@@ -140,11 +142,11 @@ function Checkboxes({ onFiltersChanged }) {
       <CheckboxWrapper>
         <Checkbox
           checked={state.fear}
-          onChange={handleChange("fear")}
+          onChange={handleChange('fear')}
           value="fear"
           classes={{
             root: classes.root,
-            checked: classes.checked,
+            checked: classes.checked
           }}
         />
         <p>Fear</p>
