@@ -5,7 +5,7 @@ export const PhotoSchema = new mongoose.Schema({
     description:  String,
     creationDate: Date,
     url: String,
-    emotions: EmotionsSchema
+    emotions: [EmotionsSchema]
 });
 
 export default mongoose.model('Photo', PhotoSchema);

@@ -7,7 +7,9 @@ export const EmotionsSchema =  new mongoose.Schema({
     anger: Number,
     surprise: Number,
     fear: Number,
-    happiness: Number
+    happiness: Number,
+    positionX: Number,
+    positionY: Number,
 });
 
 export default mongoose.model('Emotions', EmotionsSchema);

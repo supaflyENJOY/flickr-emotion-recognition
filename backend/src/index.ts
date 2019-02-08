@@ -5,9 +5,10 @@ import * as fastify from 'fastify'
 import databaseConnect from './utils/database';
 import Photo from './models/Photo';
 import getPhotos from './modules/getPhotos';
+import getEmotions from './modules/getEmotions'
 
 // Flickr photos request
-// getPhotos().then(console.log)
+//getPhotos().then(console.log)
 
 databaseConnect();
 const app = fastify()
