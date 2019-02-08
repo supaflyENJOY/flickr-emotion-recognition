@@ -1,0 +1,26 @@
+{
+  "name": "flickr-emotion-recognition-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "flickrProvider.js",
+  "scripts": {
+    "start": "tsc; node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^6.2.0",
+    "fastify": "^1.14.1",
+    "flickr-sdk": "^3.8.0",
+    "mongodb": "^3.1.13",
+    "mongoose": "^5.4.10",
+    "ramda": "^0.26.1"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^6.1.0",
+    "@types/mongoose": "^5.3.12",
+    "@types/ramda": "^0.25.48",
+    "typescript": "^3.3.3"
+  }
+}
