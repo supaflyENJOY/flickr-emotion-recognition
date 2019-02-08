@@ -1,10 +1,12 @@
 import * as dotenv from 'dotenv'
 import * as fastify from 'fastify'
 
-import Photo, { Emotions } from './providers/photosProvider'
+import databaseConnect from './utils/database';
+import Photo from './models/Photo';
 
 dotenv.config();
 
+databaseConnect();
 const app = fastify()
 
 app.get('/', async (request, reply) => Photo.find())
