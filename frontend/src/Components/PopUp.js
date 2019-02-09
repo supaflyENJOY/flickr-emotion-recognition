@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import EmotionRate from './EmotionRate';
 
 const Layout = styled.div`
   width: 100%;
@@ -70,12 +71,20 @@ const Description = styled.div`
   }
 `;
 const Emotions = styled.div``;
-
+const example = [
+  ['Happines', '22'],
+  ['Happines', '22'],
+  ['Happines', '22'],
+  ['Happines', '22'],
+  ['Happines', '22'],
+  ['Happines', '22']
+];
 export default function PopUp({ photo, back, next, exit }) {
   return (
     <Layout>
       <img src={require('../images/back.png')} alt={'arrow'} onClick={back} className={'arrows'} />
       <ImageDetails>
+        <EmotionRate emotions={example} />
         <img src={require('../images/image.png')} alt="main" className="mainPhoto" />
         <DescriptionField>
           <Description>

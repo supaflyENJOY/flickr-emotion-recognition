@@ -2,14 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  width: 408px;
+  width: 30%;
   height: 221px;
   opacity: 0.94;
   border-radius: 11px;
   background-color: #101115;
+  position: absolute;
+  top: 10%;
 `;
 const Header = styled.div`
-  width: 127px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 20%;
   font-family: Muller;
   font-size: 21px;
@@ -20,12 +24,26 @@ const Header = styled.div`
   letter-spacing: normal;
   text-align: left;
   color: #ffffff;
+  margin-bottom: 0.4em;
+  h3 {
+    font-weight: normal;
+    font-family: Muller;
+    font-size: 21px;
+  }
 `;
 
 const Body = styled.div`
   height: 80%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-left: 10%;
+    width: 80%;
+  }
 `;
 
 const EmotionContainer = styled.div`
@@ -33,7 +51,7 @@ const EmotionContainer = styled.div`
   height: 20px;
   font-family: Muller;
   font-size: 20px;
-  font-weight: normal;
+  font-weight: 500;
   font-style: normal;
   font-stretch: normal;
   line-height: 1.2;
@@ -44,7 +62,7 @@ const EmotionContainer = styled.div`
 const Key = styled.div`
   font-family: Muller;
   font-size: 20px;
-  font-weight: normal;
+  font-weight: 500;
   font-style: normal;
   font-stretch: normal;
   line-height: 1.2;
@@ -55,7 +73,7 @@ const Key = styled.div`
 const Value = styled.div`
   font-family: Muller;
   font-size: 16px;
-  font-weight: normal;
+  font-weight: 500;
   font-style: normal;
   font-stretch: normal;
   line-height: 1.19;
@@ -74,7 +92,7 @@ export default function emotionRate({ emotions }) {
         {emotions.map(emotion => (
           <EmotionContainer>
             <Key>{emotion[0]}:</Key>
-            <Value>{emotion[1]}</Value>
+            <Value>{emotion[1]}%</Value>
           </EmotionContainer>
         ))}
       </Body>
