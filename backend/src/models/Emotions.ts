@@ -10,6 +10,8 @@ export const EmotionsSchema =  new mongoose.Schema({
     happiness: Number,
     positionX: Number,
     positionY: Number,
+    width: Number,
+    height: Number,
 });
 
 export default mongoose.model('Emotions', EmotionsSchema);

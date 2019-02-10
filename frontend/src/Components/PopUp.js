@@ -71,25 +71,29 @@ const Description = styled.div`
   }
 `;
 const Emotions = styled.div``;
-const example = [
-  ['Happines', '22'],
-  ['Happines', '22'],
-  ['Happines', '22'],
-  ['Happines', '22'],
-  ['Happines', '22'],
-  ['Happines', '22']
-];
+
+const fixValue = (value) => {
+  return (value).toFixed(0);
+}
 export default function PopUp({ photo, back, next, exit }) {
+  const emotionData = [
+    ['Anger', fixValue(photo.anger)],
+    ['Happiness', fixValue(photo.happiness)],
+    ['Fear', fixValue(photo.fear)],
+    ['Neutral', fixValue(photo.neutral)],
+    ['Sadness', fixValue(photo.sadness)],
+    ['Surprise', fixValue(photo.surprise)]
+  ];
   return (
     <Layout>
       <img src={require('../images/back.png')} alt={'arrow'} onClick={back} className={'arrows'} />
       <ImageDetails>
-        <EmotionRate emotions={example} />
-        <img src={require('../images/image.png')} alt="main" className="mainPhoto" />
+        <EmotionRate emotions={emotionData} />
+        <img src={photo.url} alt="main" className="mainPhoto" />
         <DescriptionField>
           <Description>
-            <h4>{photo.id}</h4>
-            <p>{photo.text}</p>
+            <h4>{photo.photoId}</h4>
+            <p>{photo.description}</p>
           </Description>
           <Emotions>
             <p>Top emotions</p>

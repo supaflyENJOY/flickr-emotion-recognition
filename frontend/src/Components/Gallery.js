@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Filters from './Filters';
 import PhotoPresenter from './PhotoPresenter';
+import Axios from 'axios';
 
 const Loading = styled.div`
   width: 100%;
@@ -91,50 +92,45 @@ export default function Gallery(props) {
     }
   }
 
-  const data = [
-    { id: 0, text: 'Photo', anger: 23, happines: 21 },
-    { id: 1, text: 'Photo', neutral: 23, fear: 10 },
-    { id: 2, text: 'Photo', anger: 11, surprise: 15 },
-    { id: 3, text: 'Photo', sadness: 15, happines: 23 },
-    { id: 4, text: 'Photo', fear: 32, disgust: 12 },
-    { id: 5, text: 'Photo', surprise: 17, neutral: 23 },
-    { id: 6, text: 'Photo', disgust: 35, sadness: 10 },
-    { id: 7, text: 'Photo', happines: 20 },
-    { id: 8, text: 'Photo', anger: 23, happines: 21 },
-    { id: 9, text: 'Photo', neutral: 23, fear: 10 },
-    { id: 10, text: 'Photo', anger: 11, surprise: 15 },
-    { id: 11, text: 'Photo', sadness: 15, happines: 23 },
-    { id: 12, text: 'Photo', fear: 32, disgust: 12 },
-    { id: 13, text: 'Photo', surprise: 17, neutral: 23 },
-    { id: 14, text: 'Photo', disgust: 35, sadness: 10 },
-    { id: 15, text: 'Photo', happines: 20 },
-    { id: 16, text: 'Photo', anger: 23, happines: 21 },
-    { id: 17, text: 'Photo', neutral: 23, fear: 10 },
-    { id: 18, text: 'Photo', anger: 11, surprise: 15 },
-    { id: 19, text: 'Photo', sadness: 15, happines: 23 },
-    { id: 20, text: 'Photo', fear: 32, disgust: 12 },
-    { id: 21, text: 'Photo', surprise: 17, neutral: 23 },
-    { id: 22, text: 'Photo', disgust: 35, sadness: 10 },
-    { id: 23, text: 'Photo', happines: 20 },
-    { id: 24, text: 'Photo', anger: 23, happines: 21 },
-    { id: 25, text: 'Photo', neutral: 23, fear: 10 },
-    { id: 26, text: 'Photo', anger: 11, surprise: 15 },
-    { id: 27, text: 'Photo', sadness: 15, happines: 23 },
-    { id: 28, text: 'Photo', fear: 32, disgust: 12 },
-    { id: 29, text: 'Photo', surprise: 17, neutral: 23 },
-    { id: 30, text: 'Photo', disgust: 35, sadness: 10 },
-    { id: 31, text: 'Photo', happines: 20 }
-  ];
-
   async function loadItems(page = 0) {
+    // No way...
+    const response = await Axios.get(`https://flickr-emotions-recognition.herokuapp.com/api/list?page=${page}`);
+    const data = response.data.map(item => {
+      const emots = {
+        anger: 0,
+        disgust: 0,
+        fear: 0,
+        happiness: 0,
+        neutral: 0,
+        sadness: 0,
+        surprise: 0,
+      }
+      const totalEmotions = item.emotions
+        .reduce((prev, current) => {
+          let result = {};
+          Object.keys(prev).forEach((key) => {
+            result[key] = parseFloat(prev[key]) + parseFloat(current[key]);
+          })
+          return result;
+        }
+        , emots);
+      let averageEmotions = {};
+      if(item.emotions.length > 0) {
+        Object.keys(totalEmotions).forEach(key => {
+          averageEmotions[key] = totalEmotions[key] / item.emotions.length;
+        })
+      } else {
+        averageEmotions = emots;
+      }
+      return { ...item, ...averageEmotions }
+    })
+    console.log(data);
     setPhotos(data);
   }
 
   useEffect(() => {
     loadItems();
-    if (photos.length > 0 && photos[photos.length - 1].id < 31) {
-      setExistMoreItems(true);
-    } else setExistMoreItems(false);
+    setExistMoreItems(true);
   }, []);
 
   useEffect(() => {

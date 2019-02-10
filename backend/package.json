@@ -4,15 +4,18 @@
   "description": "",
   "main": "flickrProvider.js",
   "scripts": {
-    "start": "tsc; node dist/index.js",
+    "dev": "tsc; node dist/index.js",
+    "start": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^6.2.0",
     "face-plusplus-node": "0.0.6",
     "fastify": "^1.14.1",
+    "fastify-static": "^1.1.0",
     "flickr-sdk": "^3.8.0",
     "mongodb": "^3.1.13",
     "mongoose": "^5.4.10",

@@ -44,13 +44,13 @@ const Description = styled.div`
 `;
 
 export default function photos({ data, changeId }) {
-  return data.map(photo => (
-    <Layout key={photo.id} onClick={() => changeId(photo.id)}>
+  return data.map((photo, idx) => (
+    <Layout key={photo.photoId} onClick={() => changeId(idx)}>
       <ImageWrapper>
-        <img src={require('../images/image.png')} alt={'faces'} />
+        <img src={photo.url} alt={'faces'} />
         <Description>
-          <h4>{photo.id}</h4>
-          <p>{photo.text}</p>
+          <h4>{photo.description}</h4>
+          <p>{photo.photoId}</p>
         </Description>
       </ImageWrapper>
     </Layout>
