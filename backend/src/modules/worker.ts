@@ -6,9 +6,9 @@ async function createImageItems(items) {
 
     items.forEach(async (item) => {
         const formattedItem = {
-            photoId: item.id,
+            photoId: parseFloat(item.id),
             description: item.title,
-            creationDate: item.dateupload,
+            creationDate: parseFloat(item.dateupload),
             url: item.url,
             emotions: item.facesData.map((face) => ({
                 ...face.emotions,
