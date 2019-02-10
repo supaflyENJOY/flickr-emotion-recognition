@@ -8,3 +8,5 @@ Also, you can easily deploy it to Heroku. You need to add mongodb to application
 heroku container:push web -a flickr-emotions-recognition   
 heroku container:release web -a flickr-emotions-recognition
 ```
+
+**Do not forgot to setup your API keys inside backend/.env file (example in .env.example)**

@@ -27,6 +27,9 @@ async function parseStage() {
     const photos = await getPhotos();
 
     let runs = 0;
+
+    // Hack to fight on FacePP rate limit 3 QpS
+
     const parseElement = async () => {
         if(runs > 20) return;
         const filteredPhotos = (await Promise.all(photos.map(async (photo: any) => {
