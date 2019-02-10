@@ -8,7 +8,7 @@ async function createImageItems(items) {
         const formattedItem = {
             photoId: parseFloat(item.id),
             description: item.title,
-            creationDate: parseFloat(item.dateupload),
+            creationDate: new Date(parseFloat(item.dateupload) * 1000),
             url: item.url,
             emotions: item.facesData.map((face) => ({
                 ...face.emotions,
