@@ -124,11 +124,12 @@ export default function Gallery(props) {
       }
       return { ...item, ...averageEmotions }
     })
-    console.log(data);
-    setPhotos(data);
+    const newPhotos = [...photos, ...data];
+    setPhotos(newPhotos);
   }
 
   useEffect(() => {
+    console.log('yeah');
     loadItems();
     setExistMoreItems(true);
   }, []);

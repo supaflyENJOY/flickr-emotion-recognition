@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import PopUp from './PopUp';
 import Photos from './Photos';
+import InfiniteScroll from 'react-infinite-scroller';
 
 const PhotosWrapper = styled.div`
   margin-top: 100px;
@@ -21,7 +22,7 @@ const PhotosWrapper = styled.div`
   }
 `;
 
-export default function PhotosPresenter({ data }) {
+export default function PhotosPresenter({ data, load, exist }) {
   const [id, setId] = useState(null);
   function nextPhoto() {
     if (id < data.length - 1) {
@@ -42,9 +43,16 @@ export default function PhotosPresenter({ data }) {
       {id !== null ? (
         <PopUp photo={data[id]} back={previousPhoto} next={nextPhoto} exit={clear} />
       ) : null}
-      <PhotosWrapper>
-        <Photos data={data} changeId={setId} />
-      </PhotosWrapper>
+      <InfiniteScroll
+        pageStart={0}
+        loadMore={load}
+        hasMore={exist}
+        loader={<div className="loader" key={0}>Loading ...</div>}
+      >
+        <PhotosWrapper>
+            <Photos data={data} changeId={setId} />
+        </PhotosWrapper>
+      </InfiniteScroll>
     </>
   );
 }
