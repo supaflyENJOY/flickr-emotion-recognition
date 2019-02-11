@@ -46,7 +46,7 @@ export default function photos({ data, changeId }) {
   return data.map((photo, idx) => (
     <Layout key={photo.photoId} onClick={() => changeId(idx)}>
       <ImageWrapper>
-        <img src={photo.url} alt={'faces'} />
+        <img src={photo.smallUrl} alt={'faces'} />
         <Description>
           <h4>{photo.description}</h4>
           <p>{new Date(photo.creationDate).toLocaleDateString()}</p>

@@ -128,7 +128,8 @@ export default function Gallery(props) {
       } else {
         averageEmotions = emots;
       }
-      return { ...item, ...averageEmotions }
+      const smallUrl = item.url.replace('_b.jpg', '_n.jpg');
+      return { ...item, ...averageEmotions, smallUrl }
     })
     const newPhotos = [...photos, ...data];
     setPhotos(newPhotos);
