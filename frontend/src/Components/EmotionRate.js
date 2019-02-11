@@ -91,7 +91,7 @@ export default function emotionRate({ emotions }) {
       </Header>
       <Body>
         {emotions.map(emotion => (
-          <EmotionContainer>
+          <EmotionContainer key={emotion[0]}>
             <Key>{emotion[0]}:</Key>
             <Value>{emotion[1]}%</Value>
           </EmotionContainer>

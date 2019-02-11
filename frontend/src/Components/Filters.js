@@ -55,7 +55,7 @@ function Checkboxes({ onFiltersChanged }) {
     disgust: false,
     anger: false,
     surprise: false,
-    happines: false,
+    happiness: false,
     fear: false
   });
 
@@ -129,15 +129,15 @@ function Checkboxes({ onFiltersChanged }) {
       </CheckboxWrapper>
       <CheckboxWrapper>
         <Checkbox
-          checked={state.happines}
-          onChange={handleChange('happines')}
-          value="happines"
+          checked={state.happiness}
+          onChange={handleChange('happiness')}
+          value="happiness"
           classes={{
             root: classes.root,
             checked: classes.checked
           }}
         />
-        <p>Happines</p>
+        <p>Happiness</p>
       </CheckboxWrapper>
       <CheckboxWrapper>
         <Checkbox
