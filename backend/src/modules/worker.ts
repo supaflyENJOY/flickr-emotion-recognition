@@ -4,11 +4,11 @@ import Photo from '../models/Photo';
 
 async function createImageItems(items) {
 
-    items.map(async (item) => {
+    items.forEach(async (item) => {
         const formattedItem = {
-            photoId: item.id,
+            photoId: parseFloat(item.id),
             description: item.title,
-            creationDate: item.dateupload,
+            creationDate: new Date(parseFloat(item.dateupload) * 1000),
             url: item.url,
             emotions: item.facesData.map((face) => ({
                 ...face.emotions,
@@ -18,7 +18,9 @@ async function createImageItems(items) {
                 height: face.position.height,
             }))
         };
-        await Photo.create(formattedItem); 
+        try {
+            await Photo.create(formattedItem); 
+        } catch(e) {}
     })
 
 }
