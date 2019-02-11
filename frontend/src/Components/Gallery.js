@@ -71,6 +71,8 @@ export default function Gallery(props) {
   const [filteredPhotos, setFilteredPhotos] = useState([]);
 
   function applyFilters(arr) {
+    console.log(arr)
+    console.log(photos)
     setFilters(arr);
     let result = [];
     let keys = Object.keys(arr);
@@ -80,10 +82,14 @@ export default function Gallery(props) {
 
     if (selectedFilters.length !== 0) {
       result = photos.filter(obj => {
-        for (let filter in selectedFilters) {
-          if (selectedFilters[filter] in obj) {
-            return obj;
+        let correctObj = true
+        for (let i = 0; i < selectedFilters.length; i++) {
+          if (!obj[selectedFilters[i]] || obj[selectedFilters[i]]<5) {
+            correctObj = false
           }
+        }
+        if(correctObj){
+          return obj;
         }
       });
       setFilteredPhotos(result);
@@ -129,7 +135,6 @@ export default function Gallery(props) {
   }
 
   useEffect(() => {
-    console.log('yeah');
     loadItems();
     setExistMoreItems(true);
   }, []);

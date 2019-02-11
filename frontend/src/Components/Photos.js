@@ -7,8 +7,7 @@ const Layout = styled.div`
 `;
 
 const ImageWrapper = styled.div`
-  display: flex;
-  
+  display: flex;  
   width 90%;
   margin-left:5%;
   flex-direction: column;
@@ -16,8 +15,8 @@ const ImageWrapper = styled.div`
   justify-content: center;
   >img{
     margin-top: 18px;
-    width:370px;
-    height:260px;
+    max-width:95%;
+    max-height:260px;
   }
   text-align:left;
 `;
@@ -50,7 +49,7 @@ export default function photos({ data, changeId }) {
         <img src={photo.url} alt={'faces'} />
         <Description>
           <h4>{photo.description}</h4>
-          <p>{photo.photoId}</p>
+          <p>{new Date(photo.creationDate).toLocaleDateString()}</p>
         </Description>
       </ImageWrapper>
     </Layout>
