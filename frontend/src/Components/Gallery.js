@@ -71,8 +71,6 @@ export default function Gallery(props) {
   const [filteredPhotos, setFilteredPhotos] = useState([]);
 
   function applyFilters(arr) {
-    console.log(arr)
-    console.log(photos)
     setFilters(arr);
     let result = [];
     let keys = Object.keys(arr);

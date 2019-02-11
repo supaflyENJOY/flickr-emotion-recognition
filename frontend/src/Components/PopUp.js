@@ -36,7 +36,7 @@ const ImageDetails = styled.div`
   background-color: #ffffff;
   .mainPhoto {
     max-width: 100%;
-    max-height: 90%;
+    max-height: 85%;
     opacity: 1;
   }
   display: flex;
@@ -101,7 +101,6 @@ export default function PopUp({
   const emotions = emotionData
     .filter(el => {
       if (el[1] !== '0') {
-        console.log(el);
         return el;
       }
     })

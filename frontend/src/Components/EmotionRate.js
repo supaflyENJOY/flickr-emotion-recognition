@@ -2,13 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  width: 30%;
+  width: 20%;
   height: 221px;
   opacity: 0.94;
   border-radius: 11px;
   background-color: #101115;
   position: absolute;
-  top: 10%;
+  top: 24px
+  left: 24px;
 `;
 const Header = styled.div`
   display: flex;
@@ -35,7 +36,7 @@ const Header = styled.div`
 const Body = styled.div`
   height: 80%;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   > div {
     display: flex;
     flex-direction: row;
@@ -90,7 +91,7 @@ export default function emotionRate({ emotions }) {
       </Header>
       <Body>
         {emotions.map(emotion => (
-          <EmotionContainer key={emotion[0]}>
+          <EmotionContainer>
             <Key>{emotion[0]}:</Key>
             <Value>{emotion[1]}%</Value>
           </EmotionContainer>

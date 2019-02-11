@@ -13,11 +13,6 @@ const ImageWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  >img{
-    margin-top: 18px;
-    max-width:95%;
-    max-height:260px;
-  }
   text-align:left;
 `;
 
@@ -42,11 +37,28 @@ const Description = styled.div`
   }
 `;
 
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 260px;
+  >img{
+    margin-top: 18px;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+`
+
 export default function photos({ data, changeId }) {
   return data.map((photo, idx) => (
     <Layout key={photo.photoId} onClick={() => changeId(idx)}>
       <ImageWrapper>
-        <img src={photo.smallUrl} alt={'faces'} />
+        <Container>
+        <img src={photo.smallUrl} alt={'faces'} />  
+        </Container>
+        
         <Description>
           <h4>{photo.description}</h4>
           <p>{new Date(photo.creationDate).toLocaleDateString()}</p>
