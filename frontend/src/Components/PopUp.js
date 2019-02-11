@@ -10,7 +10,7 @@ const Layout = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background:rgba(8,8,12, 0.96);
+  background: rgba(8, 8, 12, 0.96);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -34,7 +34,7 @@ const ImageDetails = styled.div`
   height: 826px;
   border-radius: 5px;
   background-color: #ffffff;
-  .mainPhoto {    
+  .mainPhoto {
     max-width: 100%;
     max-height: 90%;
     opacity: 1;
@@ -75,7 +75,7 @@ img{
   width: 24px
   margin: 4px;
 }
-`
+`;;
 
 const Emotions = styled.div`
   display: flex;
@@ -84,10 +84,10 @@ const Emotions = styled.div`
   justify-content: center;
 `;
 
-const fixValue = (value) => {
-  return (value).toFixed(0);
-}
-export default function PopUp({ photo, back, next, exit }) {
+const fixValue = value => (value).toFixed(0);;
+export default function PopUp({
+ photo, back, next, exit 
+}) {
   const emotionData = [
     ['Anger', fixValue(photo.anger)],
     ['Happines', fixValue(photo.happiness)],
@@ -95,36 +95,49 @@ export default function PopUp({ photo, back, next, exit }) {
     ['Neutral', fixValue(photo.neutral)],
     ['Sadness', fixValue(photo.sadness)],
     ['Surprise', fixValue(photo.surprise)],
-    ['Disgust', fixValue(photo.disgust)]
+    ['Disgust', fixValue(photo.disgust)],
   ];
 
-  const emotions = emotionData.filter(el => { if( el[1] !== '0' ){ console.log(el);return el }}).sort((prev, next) => next[1] - prev[1]);
+  const emotions = emotionData
+    .filter(el => {
+      if (el[1] !== '0') {
+        console.log(el);
+        return el;
+      }
+    })
+    .sort((prev, next) => next[1] - prev[1]);
 
   return (
     <Layout>
-      <img src={require('../images/back.png')} alt={'arrow'} onClick={back} className={'arrows'} />
+      <img src={require('../images/back.png')} alt="arrow" onClick={back} className="arrows" />
       <ImageDetails>
-        {emotions.length>0 && <EmotionRate emotions={emotions} />}
+        {emotions.length > 0 && <EmotionRate emotions={emotions} />}
         <img src={photo.url} alt="main" className="mainPhoto" />
         <DescriptionField>
           <Description>
-            <h4>{photo.photoId}</h4>
-            <p>{photo.description}</p>
+            <h4>{photo.description}</h4>
+            <p>{new Date(photo.creationDate).toLocaleDateString()}</p>
           </Description>
-          {(emotions[0] || emotions[1] || emotions[2]) &&
-            <Emotions>
-            <p>Top emotions</p>
-            <SvgContainer>
-              {emotions[0] && emotions[0][1]!=='0' && <img src={require(`../images/${emotions[0][0]}.svg`)}  alt={emotions[0][0]} />}
-              { emotions[1] && emotions[1][1]!=='0' && <img src={require(`../images/${emotions[1][0]}.svg`)}  alt={emotions[1][0]} />}
-              {emotions[2] && emotions[2][1]!=='0' && <img src={require(`../images/${emotions[2][0]}.svg`)}  alt={emotions[2][0]} />}
-            </SvgContainer>
-          </Emotions>
-          }
+          {(emotions[0] || emotions[1] || emotions[2])
+            && <Emotions>
+                <p>Top emotions</p>
+              <SvgContainer>
+                {emotions[0] && emotions[0][1] !== '0' && (
+                  <img src={require(`../images/${emotions[0][0]}.svg`)} alt={emotions[0][0]} />
+                )}
+                {emotions[1] && emotions[1][1] !== '0' && (
+                  <img src={require(`../images/${emotions[1][0]}.svg`)} alt={emotions[1][0]} />
+                )}
+                {emotions[2] && emotions[2][1] !== '0' && (
+                  <img src={require(`../images/${emotions[2][0]}.svg`)} alt={emotions[2][0]} />
+                )}
+              </SvgContainer>
+              </Emotions>
+          )}
         </DescriptionField>
       </ImageDetails>
-      <img src={require('../images/next.png')} alt={'arrow'} onClick={next} className={'arrows'} />
-      <img src={require('../images/clear.png')} alt={'exit'} onClick={exit} className={'clear'} />
+      <img src={require('../images/next.png')} alt="arrow" onClick={next} className="arrows" />
+      <img src={require('../images/clear.png')} alt="exit" onClick={exit} className="clear" />
     </Layout>
   );
 }
