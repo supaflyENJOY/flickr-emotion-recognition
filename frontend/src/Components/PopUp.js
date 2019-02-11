@@ -133,7 +133,7 @@ export default function PopUp({
                 )}
               </SvgContainer>
               </Emotions>
-          )}
+          }
         </DescriptionField>
       </ImageDetails>
       <img src={require('../images/next.png')} alt="arrow" onClick={next} className="arrows" />
