@@ -71,7 +71,6 @@ export default function Gallery(props) {
   const [filteredPhotos, setFilteredPhotos] = useState([]);
 
   function applyFilters(arr) {
-    setFilters(arr);
     let result = [];
     let keys = Object.keys(arr);
     let selectedFilters = keys.filter(function(key) {
@@ -99,7 +98,8 @@ export default function Gallery(props) {
   async function loadItems(page = 0) {
     // No way...
     const response = await Axios.get(`https://flickr-emotions-recognition.herokuapp.com/api/list?page=${page}`);
-    const data = response.data.map(item => {
+    const fullData = response.data;
+    const data = fullData.data.map(item => {
       const emots = {
         anger: 0,
         disgust: 0,
@@ -129,13 +129,12 @@ export default function Gallery(props) {
       const smallUrl = item.url.replace('_b.jpg', '_n.jpg');
       return { ...item, ...averageEmotions, smallUrl }
     })
-    const newPhotos = [...photos, ...data];
-    setPhotos(newPhotos);
+    setExistMoreItems(fullData.hasMore);
+    setPhotos((photos) => [...photos, ...data]);
   }
 
   useEffect(() => {
     loadItems();
-    setExistMoreItems(true);
   }, []);
 
   useEffect(() => {
@@ -144,7 +143,7 @@ export default function Gallery(props) {
 
   return (
     <div>
-      <Filters onFiltersChanged={applyFilters} />
+      <Filters onFiltersChanged={setFilters} />
       {photos.length === 0 ? (
         <Loading>
           <Spinner />

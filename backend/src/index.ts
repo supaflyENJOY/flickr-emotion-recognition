@@ -19,7 +19,14 @@ app.register(require('fastify-static'), {
 
 const itemsPerPage = 18;
 
-app.get('/api/list', async (request, reply) => Photo.find().sort({ creationDate: -1 }).limit(itemsPerPage).skip(request.query.page * itemsPerPage))
+app.get('/api/list', async (request, reply) => {
+  const offset = request.query.page * itemsPerPage;
+  const data = await Photo.paginate({}, { sort: { creationDate: -1 }, limit: itemsPerPage, offset });
+  return {
+    hasMore: offset + itemsPerPage < data.total,
+    data: data.docs,
+  }
+})
 
 const port = process.env.PORT ? parseInt(process.env.PORT) : 8080;
 console.log("Starting server at " + port);
